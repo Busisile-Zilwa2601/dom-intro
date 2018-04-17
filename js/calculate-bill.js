@@ -21,18 +21,13 @@ if(!myArr){
 else{
   for(var i = 0; i<myArr.length;i++){
     var item = myArr[i].trim();
-    if(item ==='call'){
+    if(item.toLowerCase()  ==='call'){
       myCalls.push(item);
     }
-    else if(item === 'sms')
+    else if(item.toLowerCase() === 'sms')
         mySMS.push(item);
     else{
-      var p = document.createElement('p');
-      var node = document.createTextNode('Plese write call and sms only');
-      p.appendChild(node);
-      var div = document.getElementById("test");
-      var txtarea = document.querySelector('.billString');
-      div.insertBefore(p,txtarea);
+
     }
   }
   countCalls =(myCalls.length)*perCall;
