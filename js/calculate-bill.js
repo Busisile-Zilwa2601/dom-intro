@@ -12,12 +12,7 @@ var nonString = [];
 console.log(myStr);
 var myArr = myStr.split(',');
 if(!myArr){
-  var p = document.createElement('p');
-  var node = document.createTextNode('incorrect string added. please use \", \" to sperate text');
-  p.appendChild(node);
-  var div = document.getElementById("test");
-  var txtarea = document.querySelector('.billString');
-  div.insertBefore(p,txtarea);
+
 }
 else{
   for(var i = 0; i<myArr.length;i++){
@@ -30,7 +25,7 @@ else{
     else if(item.toLowerCase() !== 'call' || item.toLowerCase()!=="sms"){
       nonString.push(item);
       console.log(nonString);
-      alert("strings: " + nonString + " are not counted:" )
+      //alert("strings: " + nonString + " are not counted:" )
     }
   }
   countCalls =(myCalls.length)*perCall;
