@@ -8,6 +8,7 @@ var countSMS = 0;
 var totalBill = new Number(0.0);
 var myCalls = [];
 var mySMS = [];
+var nonString = [];
 console.log(myStr);
 var myArr = myStr.split(',');
 if(!myArr){
@@ -26,8 +27,10 @@ else{
     }
     else if(item.toLowerCase() === 'sms')
         mySMS.push(item);
-    else{
-
+    else if(item.toLowerCase() !== 'call' || item.toLowerCase()!=="sms"){
+      nonString.push(item);
+      console.log(nonString);
+      alert("strings: " + nonString + " are not counted:" )
     }
   }
   countCalls =(myCalls.length)*perCall;

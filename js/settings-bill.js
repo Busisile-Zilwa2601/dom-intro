@@ -17,24 +17,37 @@ var totalSettings = document.querySelector('.totalSettings');
 
 function radioBillBtnSetting(){
   var checkedRandioBtnSet = document.querySelector('input[class = "billItemTypeWithSettings"]:checked');
-  if(checkedRandioBtnSet){
-    var itemType = checkedRandioBtnSet.value;
-    if(itemType === 'call'){
-      callAllTotal += callAfterSetting;
-      totalAllBill += callAfterSetting;
-      //stopper =totalAllBill;
-      }
-    else if(itemType === 'sms'){
-      smsAllTotal += smsAfterSetting;
-      totalAllBill += smsAfterSetting;
-
-      }
-    }
-  stopper = criticalLevelAfterSetting-totalAllBill;
-  if(stopper <= 0){
+  stopper = criticalLevelAfterSetting;
+  if(stopper-totalAllBill<= 0){
       console.log('true');
       radioBillAddBtnSetting.removeEventListener('click', radioBillBtnSetting);
   }
+  else if(checkedRandioBtnSet){
+    var itemType = checkedRandioBtnSet.value;
+    if(itemType === 'call'){
+      var keepTotal = totalAllBill+callAfterSetting;
+      console.log(keepTotal);
+      if(stopper-keepTotal< 0){
+        //radioBillAddBtnSetting.removeEventListener('click', radioBillBtnSetting);
+      }
+      else{
+        callAllTotal += callAfterSetting;
+        totalAllBill += callAfterSetting;
+      }
+    }
+    else if(itemType === 'sms'){
+      var keepTotal = totalAllBill+smsAfterSetting;
+      console.log(keepTotal);
+      if(stopper-keepTotal < 0){
+        //radioBillAddBtnSetting.removeEventListener('click', radioBillBtnSetting);
+      }
+      else{
+        smsAllTotal += smsAfterSetting;
+        totalAllBill += smsAfterSetting;
+      }
+    }
+  }
+
   //totalAllBill = callAllTotal+smsAllTotal;
   callTotalSettings.innerHTML = callAllTotal.toFixed(2);
   smsTotalSettings.innerHTML = smsAllTotal.toFixed(2);
@@ -54,11 +67,17 @@ function radioBillBtnSetting(){
   //totalSettings.innerHTML = totalAllBill.toFixed(2);
   //When an settings are updated, the value of stopper must be checked.
   //If the difference is more than zero, the radio button must be reactivated.
+
   var x = document.querySelector('.updateSettings');
   x.onclick =function(){
     stopper = criticalLevelAfterSetting;
+    var checker = callAllTotal + totalAllBill;
     if(stopper - totalAllBill > 0){
       radioBillAddBtnSetting.addEventListener('click', radioBillBtnSetting);
+    }
+    else if(stopper <= checker)
+    {
+      radioBillAddBtnSetting.removeEventListener('click', radioBillBtnSetting);
     }
   }
 }
@@ -79,6 +98,21 @@ function theUpDateSettings(){
     warningLevelAfterSetting = parseFloat(newWarning);
     criticalLevelAfterSetting = parseFloat(newCritical);
     stopper = criticalLevelAfterSetting;
+    if(totalAllBill<warningLevelAfterSetting){
+      totalSettings.style.color = 'black';
+    }
+    else if(totalAllBill >= criticalLevelAfterSetting){
+      console.log("true")
+      totalSettings.style.color = 'red';
+      //callAllTotal = 0;
+      //smsAllTotal = 0;
+    }
+    else if(totalAllBill >= warningLevelAfterSetting){
+      totalSettings.style.color = 'orange'
+    }
+    if(stopper === totalAllBill){
+        radioBillAddBtnSetting.removeEventListener('click', radioBillBtnSetting);
+    }
 }
 console.log(theUpDateSettings());
 var upDateSetBtn = document.querySelector('.updateSettings');
