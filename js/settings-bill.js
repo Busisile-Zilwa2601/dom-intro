@@ -29,6 +29,9 @@ function radioBillBtnSetting(){
       console.log(keepTotal);
       if(stopper-keepTotal< 0){
         //radioBillAddBtnSetting.removeEventListener('click', radioBillBtnSetting);
+        totalAllBill += (criticalLevelAfterSetting - totalAllBill);
+        callAllTotal += (criticalLevelAfterSetting - totalAllBill);
+        radioBillAddBtnSetting.removeEventListener('click', radioBillBtnSetting);
       }
       else{
         callAllTotal += callAfterSetting;
@@ -40,6 +43,9 @@ function radioBillBtnSetting(){
       console.log(keepTotal);
       if(stopper-keepTotal < 0){
         //radioBillAddBtnSetting.removeEventListener('click', radioBillBtnSetting);
+        totalAllBill += (criticalLevelAfterSetting - totalAllBill);
+        smsAllTotal += (criticalLevelAfterSetting - totalAllBill);
+        radioBillAddBtnSetting.removeEventListener('click', radioBillBtnSetting);
       }
       else{
         smsAllTotal += smsAfterSetting;
@@ -52,7 +58,7 @@ function radioBillBtnSetting(){
   callTotalSettings.innerHTML = callAllTotal.toFixed(2);
   smsTotalSettings.innerHTML = smsAllTotal.toFixed(2);
   totalSettings.innerHTML = totalAllBill.toFixed(2);
-  if(totalAllBill<warningLevelAfterSetting){
+  if(totalAllBill<warningLevelAfterSetting && totalAllBill<criticalLevelAfterSetting){
     totalSettings.style.color = 'black';
   }
   else if(totalAllBill >= criticalLevelAfterSetting){
