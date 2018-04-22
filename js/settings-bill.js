@@ -29,8 +29,9 @@ function radioBillBtnSetting(){
       console.log(keepTotal);
       if(stopper-keepTotal< 0){
         //radioBillAddBtnSetting.removeEventListener('click', radioBillBtnSetting);
-        totalAllBill += (criticalLevelAfterSetting - totalAllBill);
-        callAllTotal += (criticalLevelAfterSetting - totalAllBill);
+        var change = (criticalLevelAfterSetting-totalAllBill);
+        totalAllBill += change;
+        callAllTotal += change;
         radioBillAddBtnSetting.removeEventListener('click', radioBillBtnSetting);
       }
       else{
@@ -43,8 +44,9 @@ function radioBillBtnSetting(){
       console.log(keepTotal);
       if(stopper-keepTotal < 0){
         //radioBillAddBtnSetting.removeEventListener('click', radioBillBtnSetting);
-        totalAllBill += (criticalLevelAfterSetting - totalAllBill);
-        smsAllTotal += (criticalLevelAfterSetting - totalAllBill);
+        var change = (criticalLevelAfterSetting-totalAllBill);
+        totalAllBill += change;
+        smsAllTotal += change;
         radioBillAddBtnSetting.removeEventListener('click', radioBillBtnSetting);
       }
       else{
