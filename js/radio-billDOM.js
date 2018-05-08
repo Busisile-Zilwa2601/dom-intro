@@ -16,20 +16,20 @@ var smsTotalTwo = document.querySelector('.smsTotalTwo');
 var totalTwo = document.querySelector('.totalTwo');
 var orange = document.querySelector('.orange');
 var totalBillR = 0;
-var radioFunction = RadioFunction();
+var radioFunction = TextBillTotal();
 function radioBillBtn(){
   var checkedRandioBtn = document.querySelector('input[name = "billItemType"]:checked');
   if(checkedRandioBtn){
     var billItemType = checkedRandioBtn.value;
-    radioFunction.billRadio(billItemType);
+    radioFunction.bill(billItemType);
     if(billItemType === 'call'){
-      callTotalTwo.innerHTML = radioFunction.checkRadio(billItemType);
+      callTotalTwo.innerHTML = radioFunction.check(billItemType);
     }
     else if(billItemType === 'sms'){
-      smsTotalTwo.innerHTML = radioFunction.checkRadio(billItemType);
+      smsTotalTwo.innerHTML = radioFunction.check(billItemType);
     }
   }
-  totalBillR = radioFunction.amountRadio();
+  totalBillR = radioFunction.amount();
   if(totalBillR >= 50){
     orange.classList.add('danger');
     totalTwo.innerHTML = totalBillR;
